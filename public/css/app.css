@@ -18,3 +18,10 @@ nav {
   height: 18vw;
   object-fit: cover;
 }
+
+.categories-list {
+  img {
+    min-height: 140px;
+    max-height: 300px;
+  }
+}
