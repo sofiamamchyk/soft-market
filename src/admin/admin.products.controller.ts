@@ -10,18 +10,12 @@ import * as fs from 'fs';
 export class AdminProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
-  @Post('/:id')
-  @Redirect('/admin/products')
-  remove(@Param('id') id: string) {
-    return this.productsService.remove(id);
-  }
-
-  @Get('/:id')
-  @Render('admin/products/edit')
-  async edit(@Param('id') id: string) {
+  @Get('/')
+  @Render('admin/products/index')
+  async index() {
     const viewData = [];
-    viewData['title'] = 'Admin Page - Edit Product - Online Store';
-    viewData['product'] = await this.productsService.findOne(id);
+    viewData['title'] = 'Admin Page - Admin - Online Store';
+    viewData['products'] = await this.productsService.findAll();
     return {
       viewData: viewData,
     };
