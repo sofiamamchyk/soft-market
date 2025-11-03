@@ -1,0 +1,46 @@
+{{#> app}}
+  {{#*inline "content"}}
+    {{#each viewData.orders}}
+    <div class="card mb-4">
+      <div class="card-header">
+        Замовлення #{{getId}}
+      </div>
+      <div class="card-body">
+        <b>Дата:</b> {{getDate}}<br />
+        <b>Загальна ціна:</b> {{getTotal}} грн.<br />
+        <table class="table table-bordered table-striped text-center mt-3">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Назва продукту</th>
+              <th scope="col">Ціна</th>
+              <th scope="col">Кількість</th>
+            </tr>
+            <tbody>
+              {{#each getItems}}
+              <tr>
+                <td>{{getId}}</td>
+                {{#with getProduct}}
+                <td>
+                  <a class="link-success" href="/products/{{getId}}">
+                    {{getName}}
+                  </a>
+                </td>
+                {{/with}}
+                <td>{{getPrice}} грн.</td>
+                <td>{{getQuantity}}</td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </thead>
+          
+        </table>
+      </div>
+    </div>
+    {{else}}
+    <div class="alert alert-danger" role="alert">
+      Seems to be that you have not purchased anything in our store =(.
+    </div>
+    {{/each}}
+  {{/inline}}
+{{/app}}
