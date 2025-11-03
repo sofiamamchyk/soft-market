@@ -27,7 +27,7 @@
         </table>
         <div class="row">
           <div class="text-end">
-            <a class="btn btn-outline-secondary mb-2"><b>Загальна ціна:</b> ${{viewData.total}}</a>
+            <a class="btn btn-outline-secondary mb-2"><b>Загальна ціна:</b> {{viewData.total}} грн.</a>
             {{#if viewData.productsInCart}}
             <a href="/cart/purchase" class="btn bg-primary text-white mb-2">Оформити замовлення</a>
             <a href="/cart/delete" class="btn btn-danger mb-2">
