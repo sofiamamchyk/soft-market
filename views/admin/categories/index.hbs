@@ -1,0 +1,82 @@
+{{#> admin}}
+  {{#*inline "content"}}
+    <div class="card mb-4">
+      <div class="card-header">
+        Створити категорію
+      </div>
+      <div class="card-body">
+        {{#if flashErrors}}
+          {{#each flashErrors}}
+            <p class="alert alert-danger">{{this}}</p>
+          {{/each}}
+        {{/if}}
+        <form method="POST" action="/admin/categories/store"enctype="multipart/form-data">
+          <div class="row">
+            <div class="col">
+              <div class="mb-3 row">
+                <label class="col-lg-2 col-md-6 col-sm-12 col-form-label">Назва:</label>
+                <div class="col-lg-10 col-md-6 col-sm-12">
+                  <input name="name" type="text" class="form-control">
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              &nbsp;
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="mb-3 row">
+                <label class="col-lg-2 col-md-6 col-sm-12 col-form-label">Зображення:</label>
+                <div class="col-lg-10 col-md-6 col-sm-12">
+                  <input class="form-control" type="file" name="image">
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              &nbsp;
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Зберегти</button>
+        </form>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        Керувати категоріями
+      </div>
+      <div class="card-body">
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Назва</th>
+              <th scope="col">Редагувати</th>
+              <th scope="col">Видалити</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each viewData.categories}}
+            <tr>
+              <td>{{getId}}</td>
+              <td>{{getName}}</td>
+              <td>
+                <a class="btn btn-primary" href="/admin/categories/{{getId}}">
+                  <i class="bi-pencil"></i>
+                </a>
+              </td>
+              <td>
+                <form action="/admin/categories/{{getId}}" method="POST">
+                  <button class="btn btn-danger">
+                    <i class="bi-trash"></i>
+                  </button>
+                </form>
+              </td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  {{/inline}}
+{{/admin}}

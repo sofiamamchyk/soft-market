@@ -24,4 +24,13 @@ nav {
     min-height: 140px;
     max-height: 300px;
   }
+
+  .category-item {
+    position: relative;
+  }
+
+  .category-title {
+    position: absolute;
+    bottom: 10px;
+  }
 }

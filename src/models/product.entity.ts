@@ -1,5 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne } from 'typeorm';
 import { Item } from './item.entity';
+import {Category} from './category.entity';
 
 @Entity()
 export class Product {
@@ -20,6 +21,9 @@ export class Product {
 
   @OneToMany(() => Item, (item) => item.product)
   items: Item[];
+
+  @ManyToOne(() => Category, (category) => category.products)
+  category: Category;
 
   getId(): number {
     return this.id;

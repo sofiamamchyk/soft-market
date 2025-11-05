@@ -3,10 +3,12 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { ProductsController } from './products.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { CategoriesService } from './models/categories.service';
 import { ProductsService } from './models/products.service';
 import { UsersService } from './models/users.service';
 import { OrdersService } from './models/orders.service';
 import { Product } from './models/product.entity';
+import { Category } from './models/category.entity';
 import { User } from './models/user.entity';
 import { Order } from './models/order.entity';
 import { AdminModule } from './admin/admin.module';
@@ -35,14 +37,14 @@ import { AccountModule } from './account/account.module';
         synchronize: true,
       }),
     }),
-    TypeOrmModule.forFeature([Product, User, Order]),
+    TypeOrmModule.forFeature([Product, Category, User, Order]),
     AdminModule,
     AuthModule,
     CartModule,
     AccountModule,
   ],
   controllers: [AppController, ProductsController],
-  providers: [ProductsService, UsersService, OrdersService],
-  exports: [ProductsService, UsersService, OrdersService],
+  providers: [ProductsService, CategoriesService, UsersService, OrdersService],
+  exports: [ProductsService, CategoriesService, UsersService, OrdersService],
 })
 export class AppModule {}

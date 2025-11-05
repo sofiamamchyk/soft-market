@@ -1,24 +1,16 @@
 {{#> app}}
   {{#*inline "content"}}
     <div class="row categories-list">
-      <div class="col-md-6 col-lg-4 mb-3 mb-sm-4">
-        <img src="/img/IMG_8486.JPG" class="card-img-top img-card rounded">
+      {{#each viewData.categories}}
+      <div class="category-item col-md-6 col-lg-4 mb-3 mb-sm-4">
+        <div class="card">
+          <img src="/uploads/{{getImage}}" class="card-img-top img-card">
+          <h2 class="category-title text-center text-white w-100">
+            {{getName}}
+          </h2>
+        </div>
       </div>
-      <div class="col-md-6 col-lg-4 mb-3 mb-sm-4">
-        <img src="/img/IMG_8488.JPG" class="card-img-top img-card rounded">
-      </div>
-      <div class="col-md-6 col-lg-4 mb-3 mb-sm-4">
-        <img src="/img/IMG_8490.JPG" class="card-img-top img-card rounded">
-      </div>
-      <div class="col-md-6 col-lg-4 mb-3 mb-sm-4">
-        <img src="/img/meat.JPG" class="card-img-top img-card rounded">
-      </div>
-      <div class="col-md-6 col-lg-4 mb-3 mb-sm-4">
-        <img src="/img/fish.JPG" class="card-img-top img-card rounded">
-      </div>
-      <div class="col-md-6 col-lg-4 mb-3 mb-sm-4">
-        <img src="/img/cereals.JPG" class="card-img-top img-card rounded">
-      </div>
+      {{/each}}
     </div>
   {{/inline}}
 {{/app}}

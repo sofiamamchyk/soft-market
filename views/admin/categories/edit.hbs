@@ -1,0 +1,47 @@
+{{#> admin}}
+  {{#*inline "content"}}
+    <div class="card mb-4">
+      <div class="card-header">
+        Редагувати категорію
+      </div>
+      <div class="card-body">
+        {{#if flashErrors}}
+          {{#each flashErrors}}
+            <p class="alert alert-danger">{{this}}</p>
+          {{/each}}
+        {{/if}}
+        {{#with viewData.category}}
+        <form method="POST" action="/admin/categories/{{getId}}/update" enctype="multipart/form-data">
+          <div class="row">
+            <div class="col">
+              <div class="mb-3 row">
+                <label class="col-lg-2 col-md-6 col-sm-12 col-form-label">Назва:</label>
+                <div class="col-lg-10 col-md-6 col-sm-12">
+                  <input name="name" value="{{getName}}" type="text" class="form-control">
+                </div>
+              </div>
+            </div>
+            <div class="col">
+                &nbsp;
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="mb-3 row">
+                <label class="col-lg-2 col-md-6 col-sm-12 col-form-label">Зображення:</label>
+                <div class="col-lg-10 col-md-6 col-sm-12">
+                  <input class="form-control" type="file" name="image">
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              &nbsp;
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Зберегти</button>
+        </form>
+        {{/with}}
+      </div>
+    </div>
+  {{/inline}}
+{{/admin}}
