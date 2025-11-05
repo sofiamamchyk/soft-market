@@ -26,7 +26,7 @@
           {{#if session.user}}
           <a class="nav-link active" href="/account/orders">Мої замовлення</a>
             {{#ifCond session.user.role 'admin'}}
-            <a class="nav-link active" href="/admin">Адмін</a>
+            <a class="nav-link active" href="/admin/products">Адмін панель</a>
             {{/ifCond}}
           <a class="nav-link active" href="/auth/logout">Вихід ({{session.user.name}})</a>
           {{else}}
