@@ -15,6 +15,10 @@ export class ProductValidator {
       errors.push('Назва не може бути пустою');
     }
 
+    if (toValidate.includes('category') && !validator.isInt(body.category)) {
+      errors.push('Категорія не може бути пустою');
+    }
+
     if (toValidate.includes('description'))
     {
       if (validator.isEmpty(body.description)) {

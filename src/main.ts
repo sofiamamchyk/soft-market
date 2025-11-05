@@ -27,6 +27,13 @@ async function bootstrap() {
   hbs.registerHelper('formatLineBreaks', function(value) {
     return value?.replaceAll(/\n/g, '<br>');
   });
+  hbs.registerHelper('selected', function(option, value){
+    if (option === value) {
+        return ' selected';
+    } else {
+        return ''
+    }
+});
   
   app.setViewEngine('hbs');
   app.use(

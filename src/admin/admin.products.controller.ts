@@ -5,10 +5,14 @@ import { ProductsService } from '../models/products.service';
 import { Product } from '../models/product.entity';
 import { ProductValidator } from '../validators/product.validator';
 import * as fs from 'fs';
+import {CategoriesService} from 'src/models/categories.service';
 
 @Controller('/admin/products')
 export class AdminProductsController {
-  constructor(private readonly productsService: ProductsService) {}
+  constructor(
+    private readonly productsService: ProductsService,
+    private readonly categoriesService: CategoriesService
+  ) {}
 
   @Get('/')
   @Render('admin/products/index')
@@ -16,6 +20,7 @@ export class AdminProductsController {
     const viewData = [];
     viewData['title'] = 'Admin Page - Admin - Online Store';
     viewData['products'] = await this.productsService.findAll();
+    viewData['categories'] = await this.categoriesService.findAll();
     return {
       viewData: viewData,
     };
@@ -27,7 +32,7 @@ export class AdminProductsController {
   async store(@Body() body, @UploadedFile() file: Express.Multer.File,
     @Req() request,
   ) {
-    const toValidate: string[] = ['name', 'description', 'price', 'imageCreate'];
+    const toValidate: string[] = ['name', 'category', 'description', 'price', 'imageCreate'];
     const errors: string[] = ProductValidator.validate(body, file, toValidate);
     if (errors.length > 0) {
       if (file) {
@@ -36,10 +41,12 @@ export class AdminProductsController {
       request.session.flashErrors = errors;
     } else {
       const newProduct = new Product();
+      const category = await this.categoriesService.findOne(body.category);
       newProduct.setName(body.name);
       newProduct.setDescription(body.description);
       newProduct.setPrice(body.price);
       newProduct.setImage(file.filename);
+      newProduct.setCategory(category);
       await this.productsService.createOrUpdate(newProduct);
     }
   }
@@ -56,6 +63,7 @@ export class AdminProductsController {
     const viewData = [];
     viewData['title'] = 'Admin Page - Edit Product - Online Store';
     viewData['product'] = await this.productsService.findOne(id);
+    viewData['categories'] = await this.categoriesService.findAll();
     return {
       viewData: viewData,
     };
@@ -70,7 +78,7 @@ export class AdminProductsController {
     @Req() request,
     @Res() response,
   ) {
-    const toValidate: string[] = ['name', 'description', 'price', 'imageUpdate'];
+    const toValidate: string[] = ['name', 'category', 'description', 'price', 'imageUpdate'];
     const errors: string[] = ProductValidator.validate(body, file, toValidate);
     if (errors.length > 0) {
       if (file) {
@@ -80,9 +88,11 @@ export class AdminProductsController {
       return response.redirect('/admin/products/'+id);
     } else {
       const product = await this.productsService.findOne(id);
+      const category = await this.categoriesService.findOne(body.category);
       product.setName(body.name);
       product.setDescription(body.description);
       product.setPrice(body.price);
+      product.setCategory(category);
       if (file) {
         product.setImage(file.filename);
       }

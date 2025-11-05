@@ -25,6 +25,14 @@ export class Product {
   @ManyToOne(() => Category, (category) => category.products)
   category: Category;
 
+  getCategory(): Category {
+    return this.category;
+  }
+
+  setCategory(category: Category) {
+    this.category = category;
+  }
+
   getId(): number {
     return this.id;
   }
