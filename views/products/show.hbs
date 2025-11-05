@@ -11,7 +11,7 @@
             <h5 class="card-title">
               {{getName}} ({{getPrice}} грн.)
             </h5>
-            <p class="card-text">{{getDescription}}</p>
+            <p class="card-text">{{{formatLineBreaks description}}}</p>
             <p class="card-text">
               <form method="POST" action="/cart/add/{{getId}}">
                 <div class="row">

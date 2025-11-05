@@ -13,6 +13,21 @@ async function bootstrap() {
   app.setBaseViewsDir(join(__dirname, '..', 'views'));
   hbs.registerPartials(join(__dirname, '..', 'views/layouts'));
   hbsUtils(hbs).registerWatchedPartials(join(__dirname, '..', 'views/layouts'));
+
+  // Custom Handlebars helpers
+  hbs.registerHelper('ifCond', function(v1, v2, options) {
+    if(v1 === v2) {
+      return options.fn(this);
+    }
+    return options.inverse(this);
+  });
+  hbs.registerHelper('formatTextareaContent', function(value) {
+    return value.split('\n').map(item => item.trim()).join('&#10;');
+  });
+  hbs.registerHelper('formatLineBreaks', function(value) {
+    return value?.replaceAll(/\n/g, '<br>');
+  });
+  
   app.setViewEngine('hbs');
   app.use(
     session({

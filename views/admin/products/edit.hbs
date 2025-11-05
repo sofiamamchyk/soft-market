@@ -2,7 +2,7 @@
   {{#*inline "content"}}
     <div class="card mb-4">
       <div class="card-header">
-        Edit Product
+        Редагувати продукт
       </div>
       <div class="card-body">
         {{#if flashErrors}}
@@ -15,7 +15,7 @@
           <div class="row">
             <div class="col">
               <div class="mb-3 row">
-                <label class="col-lg-2 col-md-6 col-sm-12 col-form-label">Name:</label>
+                <label class="col-lg-2 col-md-6 col-sm-12 col-form-label">Назва:</label>
                 <div class="col-lg-10 col-md-6 col-sm-12">
                   <input name="name" value="{{getName}}" type="text" class="form-control" required>
                 </div>
@@ -23,9 +23,12 @@
             </div>
             <div class="col">
               <div class="mb-3 row">
-                <label class="col-lg-2 col-md-6 col-sm-12 col-form-label">Price:</label>
+                <label class="col-lg-2 col-md-6 col-sm-12 col-form-label">Ціна:</label>
                 <div class="col-lg-10 col-md-6 col-sm-12">
-                  <input name="price" value="{{getPrice}}" type="number" class="form-control" required>
+                  <div class="input-group">
+                    <input name="price" value="{{getPrice}}" type="text" class="form-control" required>
+                    <span class="input-group-text">грн.</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -33,7 +36,7 @@
           <div class="row">
             <div class="col">
               <div class="mb-3 row">
-                <label class="col-lg-2 col-md-6 col-sm-12 col-form-label">Image:</label>
+                <label class="col-lg-2 col-md-6 col-sm-12 col-form-label">Зображення:</label>
                 <div class="col-lg-10 col-md-6 col-sm-12">
                   <input class="form-control" type="file" name="image">
                 </div>
@@ -44,10 +47,10 @@
             </div>
           </div>
           <div class="mb-3">
-            <label class="form-label">Description</label>
-            <textarea class="form-control" name="description" rows="3" required>{{getDescription}}</textarea>
+            <label class="form-label">Опис</label>
+            <textarea class="form-control" name="description" rows="10" required>{{{formatTextareaContent description}}}</textarea>
           </div>
-          <button type="submit" class="btn btn-primary">Edit</button>
+          <button type="submit" class="btn btn-primary">Зберегти</button>
         </form>
         {{/with}}
       </div>

@@ -9,13 +9,13 @@ export class Product {
   @Column()
   name: string;
 
-  @Column()
+  @Column({  length: 1000 })
   description: string;
 
   @Column()
   image: string;
 
-  @Column()
+  @Column({ type: 'decimal', precision: 10, scale: 2 })
   price: number;
 
   @OneToMany(() => Item, (item) => item.product)
