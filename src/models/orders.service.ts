@@ -10,6 +10,15 @@ export class OrdersService {
     private ordersRepository: Repository<Order>,
   ) {}
 
+
+  findAll(): Promise<Order[]> {
+    return this.ordersRepository.find({ relations: ['user']});
+  }
+
+  findOne(id: string): Promise<Order> {
+    return this.ordersRepository.findOne(id, { relations: ['user', 'items', 'items.product'],});
+  }
+
   createOrUpdate(order: Order): Promise<Order> {
     return this.ordersRepository.save(order);
   }
@@ -21,5 +30,9 @@ export class OrdersService {
       },
       relations: ['items', 'items.product'],
     });
+  }
+
+  async remove(id: string): Promise<void> {
+    await this.ordersRepository.delete(id);
   }
 }

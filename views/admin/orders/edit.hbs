@@ -1,0 +1,70 @@
+{{#> admin}}
+  {{#*inline "content"}}
+    <div class="card mb-4">
+      <div class="card-header">
+        Редагувати замовлення #{{viewData.order.id}}
+      </div>
+      <div class="card-body">
+        {{#if flashErrors}}
+          {{#each flashErrors}}
+            <p class="alert alert-danger">{{this}}</p>
+          {{/each}}
+        {{/if}}
+        {{#with viewData.order}}
+        <form method="POST" action="/admin/orders/{{getId}}/update">
+          <div class="row mb-3">
+            <div class="col">
+                <b>Дата:</b> {{getDate}}
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <b>Користувач:</b>
+              <a href="/admin/users/{{user.id}}" >{{user.email}}</a>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+                <b>Загальна ціна:</b> {{getTotal}} грн.
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <b>Продукти:</b>
+            </div>
+          </div>
+          <div class="row mb-1">
+            <div class="col">
+                <table class="table table-bordered table-striped text-center">
+                    <thead>
+                        <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Назва</th>
+                        <th scope="col">Кількість</th>
+                        <th scope="col">Ціна</th>
+                        </tr>
+                        <tbody>
+                        {{#each getItems}}
+                        <tr>
+                            <td>{{getId}}</td>
+                            {{#with getProduct}}
+                            <td>
+                                <a href="/admin/products/{{getId}}">{{getName}}</a>
+                            </td>
+                            {{/with}}
+                            <td>{{getQuantity}}</td>
+                            <td>{{getPrice}} грн.</td>
+                        </tr>
+                        {{/each}}
+                        </tbody>
+                    </thead>
+                </table>
+            </div>
+          </div>
+          {{!-- <button type="submit" class="btn btn-primary">Зберегти</button> --}}
+        </form>
+        {{/with}}
+      </div>
+    </div>
+  {{/inline}}
+{{/admin}}

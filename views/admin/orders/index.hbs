@@ -1,0 +1,45 @@
+{{#> admin}}
+  {{#*inline "content"}}
+    <div class="card">
+      <div class="card-header">
+        Керувати замовленнями
+      </div>
+      <div class="card-body">
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Дата</th>
+              <th scope="col">Користувач</th>
+              <th scope="col">Загальна ціна</th>
+              <th scope="col">Редагувати</th>
+              <th scope="col">Видалити</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each viewData.orders}}
+            <tr>
+              <td>{{getId}}</td>
+              <td>{{getDate}}</td>
+              <td><a href="/admin/users/{{user.id}}" >{{user.email}}</a></td>
+              <td>{{getTotal}} грн</td>
+              <td>
+                <a class="btn btn-primary" href="/admin/orders/{{getId}}">
+                  <i class="bi-pencil"></i>
+                </a>
+              </td>
+              <td>
+                <form action="/admin/orders/{{getId}}" method="POST">
+                  <button class="btn btn-danger">
+                    <i class="bi-trash"></i>
+                  </button>
+                </form>
+              </td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  {{/inline}}
+{{/admin}}
