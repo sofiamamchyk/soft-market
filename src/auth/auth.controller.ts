@@ -51,18 +51,26 @@ export class AuthController {
 
   @Post('/connect')
   async connect(@Body() body, @Req() request, @Res() response) {
-    const email = body.email;
-    const pass = body.password;
-    const user = await this.usersService.login(email, pass);
-    if (user) {
-      request.session.user = {
-        id: user.getId(),
-        name: user.getName(),
-        role: user.getRole(),
-      };
-      return response.redirect('/');
-    } else {
+    const toValidate: string[] = ['email', 'password'];
+    const errors: string[] = UserValidator.validate(body, toValidate);
+    if (errors.length > 0) {
+      request.session.flashErrors = errors;
       return response.redirect('/auth/login');
+    } else {
+      const email = body.email;
+      const pass = body.password;
+      const user = await this.usersService.login(email, pass);
+      if (user) {
+        request.session.user = {
+          id: user.getId(),
+          name: user.getName(),
+          role: user.getRole(),
+        };
+        return response.redirect('/');
+      } else {
+        request.session.flashErrors = ['Неправильний імейл або пароль користувача'];
+        return response.redirect('/auth/login');
+      }
     }
   }
 

@@ -1,0 +1,101 @@
+{{#> admin}}
+  {{#*inline "content"}}
+    <div class="card mb-4">
+      <div class="card-header">
+        Створити користувача
+      </div>
+      <div class="card-body">
+        {{#if flashErrors}}
+          {{#each flashErrors}}
+            <p class="alert alert-danger">{{this}}</p>
+          {{/each}}
+        {{/if}}
+        <form method="POST" action="/admin/users/store">
+          <div class="row">
+            <div class="col">
+              <div class="mb-3 row">
+                <label class="col-lg-2 col-md-6 col-sm-12 col-form-label">Ім'я:</label>
+                <div class="col-lg-10 col-md-6 col-sm-12">
+                  <input name="name" type="text" class="form-control">
+                </div>
+              </div>
+            </div>
+            <div class="col">
+                <div class="mb-3 row">
+                    <label class="col-lg-2 col-md-6 col-sm-12 col-form-label">Пароль:</label>
+                    <div class="col-lg-10 col-md-6 col-sm-12">
+                        <input name="password" type="password" class="form-control">
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="mb-3 row">
+                <label class="col-lg-2 col-md-6 col-sm-12 col-form-label">Імейл:</label>
+                <div class="col-lg-10 col-md-6 col-sm-12">
+                  <input name="email" type="email" class="form-control">
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="mb-3 row">
+                <label class="col-lg-2 col-md-6 col-sm-12 col-form-label">Роль:</label>
+                <div class="col-lg-10 col-md-6 col-sm-12">
+                  <select class="form-control form-select" name="role" aria-label="Виберіть роль">
+                    <option value="" selected>Виберіть роль</option>
+                    {{#each @root.viewData.roles}}
+                      <option value="{{this}}">{{this}}</option>
+                    {{/each}}
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Зберегти</button>
+        </form>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        Керувати користувачами
+      </div>
+      <div class="card-body">
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Імейл</th>
+              <th scope="col">Ім'я</th>
+              <th scope="col">Роль</th>
+              <th scope="col">Редагувати</th>
+              <th scope="col">Видалити</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each viewData.users}}
+            <tr>
+              <td>{{getId}}</td>
+              <td>{{getEmail}}</td>
+              <td>{{getName}}</td>
+              <td>{{getRole}}</td>
+              <td>
+                <a class="btn btn-primary" href="/admin/users/{{getId}}">
+                  <i class="bi-pencil"></i>
+                </a>
+              </td>
+              <td>
+                <form action="/admin/users/{{getId}}" method="POST">
+                  <button class="btn btn-danger">
+                    <i class="bi-trash"></i>
+                  </button>
+                </form>
+              </td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  {{/inline}}
+{{/admin}}

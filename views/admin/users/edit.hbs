@@ -1,0 +1,57 @@
+{{#> admin}}
+  {{#*inline "content"}}
+    <div class="card mb-4">
+      <div class="card-header">
+        Редагувати користувача
+      </div>
+      <div class="card-body">
+        {{#if flashErrors}}
+          {{#each flashErrors}}
+            <p class="alert alert-danger">{{this}}</p>
+          {{/each}}
+        {{/if}}
+        {{#with viewData.user}}
+        <form method="POST" action="/admin/users/{{getId}}/update">
+          <div class="row">
+            <div class="col">
+              <div class="mb-3 row">
+                <label class="col-lg-2 col-md-6 col-sm-12 col-form-label">Ім'я:</label>
+                <div class="col-lg-10 col-md-6 col-sm-12">
+                  <input name="name" value="{{getName}}" type="text" class="form-control">
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="mb-3 row">
+                <label class="col-lg-2 col-md-6 col-sm-12 col-form-label">Роль:</label>
+                <div class="col-lg-10 col-md-6 col-sm-12">
+                  <select class="form-control form-select" name="role" aria-label="Виберіть роль">
+                    <option value="" {{selected null @root.viewData.user.role}}>Виберіть роль</option>
+                    {{#each @root.viewData.roles}}
+                      <option value="{{this}}" {{selected this @root.viewData.user.role}}>{{this}}</option>
+                    {{/each}}
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="mb-3 row">
+                <label class="col-lg-2 col-md-6 col-sm-12 col-form-label">Імейл:</label>
+                <div class="col-lg-10 col-md-6 col-sm-12">
+                  <input name="email" type="email" value="{{getEmail}}" class="form-control">
+                </div>
+              </div>
+            </div>
+            <div class="col">
+                &nbsp;
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Зберегти</button>
+        </form>
+        {{/with}}
+      </div>
+    </div>
+  {{/inline}}
+{{/admin}}

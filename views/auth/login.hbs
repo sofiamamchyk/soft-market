@@ -6,18 +6,23 @@
         <div class="card">
           <div class="card-header">Увійти</div>
           <div class="card-body">
+            {{#if flashErrors}}
+              {{#each flashErrors}}
+                <p class="alert alert-danger">{{this}}</p>
+              {{/each}}
+            {{/if}}
             <form method="POST" action="/auth/connect">
               <div class="form-group row pb-2">
                 <label for="email" class="col-md-4 col-form-label text-md-right">Імейл</label>
                 <div class="col-md-6">
-                  <input id="email" type="email" class="form-control" name="email" required />
+                  <input id="email" type="email" class="form-control" name="email"/>
                 </div>
               </div>
 
               <div class="form-group row pb-2">
                 <label for="password" class="col-md-4 col-form-label text-md-right">Пароль</label>
                 <div class="col-md-6">
-                  <input id="password" type="password" class="form-control" name="password" required />
+                  <input id="password" type="password" class="form-control" name="password"/>
                 </div>
               </div>
 

@@ -5,18 +5,22 @@ export class UserValidator {
     const errors: string[] = [];
 
     if (toValidate.includes('name') && validator.isEmpty(body.name)) {
-      errors.push('Name cannot be empty');
+      errors.push('Ім\'я не може бути пустим');
     }
 
     if (toValidate.includes('email') && !validator.isEmail(body.email)) {
-      errors.push('Invalid Email format');
+      errors.push('Неправильний формат імейлу');
+    }
+
+    if (toValidate.includes('role') && validator.isEmpty(body.role)) {
+      errors.push('Не вибрана роль користувача');
     }
 
     if (
       toValidate.includes('password') &&
       validator.isEmpty(body.password)
     ) {
-      errors.push('Password cannot be empty');
+      errors.push('Пароль не може бути пустим');
     }
 
     return errors;
