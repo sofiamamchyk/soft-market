@@ -1,6 +1,6 @@
 {{#> app}}
   {{#*inline "content"}}
-    <div class="row category-badges mb-2">
+    <div class="row category-badges mb-3">
         <div class="col">
             <a href="/categories" class="mb-2 me-1">
                 <span class="category-badge badge rounded-pill {{selected undefined @root.viewData.category.id}}">Всі продукти</span>
@@ -12,13 +12,31 @@
             {{/each}}
         </div>
     </div>
-    <div class="row">
+    <div class="row" style="--bs-gutter-x: 1rem;">
       {{#each viewData.products}}
-      <div class="col-md-4 col-lg-3 mb-2">
-        <div class="card">
-          <img src="/uploads/{{getImage}}" class="card-img-top img-card">
-          <div class="card-body text-center">
-            <a href="/products/{{getId}}" class="btn bg-primary text-white">{{getName}}</a>
+      <div class="col-md-4 col-lg-3 mb-3">
+        <div class="card product-card">
+          <a href="/products/{{getId}}">
+            <img src="/uploads/{{getImage}}" class="product-card__img card-img-top img-card">
+          </a>
+          <div class="card-body">
+            <div class="product-card__title mb-2">
+              <a href="/products/{{getId}}" class="card-text w-100">
+                {{getName}}
+              </a>
+            </div>
+            <div class="product-card__footer">
+              <div class="product-price">
+                <span class="product-price__value">{{getPrice}}</span>
+                <span class="product-price__currency">грн</span>
+              </div>
+              <form method="POST" action="/cart/add/{{getId}}">
+                <input type="hidden" name="quantity" value="1">
+                <button class="product-card__cart-btn btn bg-primary text-white" type="submit">
+                  <i class="bi bi-cart"></i>
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </div>

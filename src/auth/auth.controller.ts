@@ -12,7 +12,7 @@ export class AuthController {
   @Render('auth/register')
   register() {
     const viewData = [];
-    viewData['title'] = 'User Register - Online Store';
+    viewData['title'] = 'Зареєструватись - Soft Market';
     viewData['subtitle'] = 'Зареєструватись';
     return {
       viewData: viewData,
@@ -42,7 +42,7 @@ export class AuthController {
   @Render('auth/login')
   login() {
     const viewData = [];
-    viewData['title'] = 'User Login - Online Store';
+    viewData['title'] = 'Увійти - Soft Market';
     viewData['subtitle'] = 'Увійти';
     return {
       viewData: viewData,

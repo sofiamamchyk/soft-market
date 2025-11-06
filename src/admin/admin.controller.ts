@@ -6,7 +6,7 @@ export class AdminController {
   @Render('admin/index')
   index() {
     const viewData = [];
-    viewData['title'] = 'Admin Page - Admin - Online Store';
+    viewData['title'] = 'Головна - Адмін панель - Soft Market';
     return {
       viewData: viewData,
     };

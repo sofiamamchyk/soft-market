@@ -9,7 +9,7 @@ export class AccountController {
   @Render('account/orders')
   async orders(@Req() request) {
     const viewData = [];
-    viewData['title'] = 'My Orders - Online Store';
+    viewData['title'] = 'Мої замовлення - Soft Market';
     viewData['subtitle'] = 'Мої замовлення';
     viewData['orders'] = await this.ordersService.findByUserId(
       request.session.user.id,

@@ -29,8 +29,8 @@ export class CartController {
     }
 
     const viewData = [];
-    viewData['title'] = 'Cart - Online Store';
-    viewData['subtitle'] = 'Корзина';
+    viewData['title'] = 'Кошик - Soft Market';
+    viewData['subtitle'] = 'Кошик';
     viewData['total'] = total;
     viewData['productsInCart'] = productsInCart;
     return {
@@ -91,8 +91,8 @@ export class CartController {
       request.session.products = null;
 
       const viewData = [];
-      viewData['title'] = 'Purchase - Online Store';
-      viewData['subtitle'] = 'Purchase Status';
+      viewData['title'] = 'Купівля - Soft Market';
+      viewData['subtitle'] = 'Статус замовлення';
       viewData['orderId'] = order.getId();
       return response.render('cart/purchase', { viewData: viewData });
     }

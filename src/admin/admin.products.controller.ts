@@ -18,7 +18,7 @@ export class AdminProductsController {
   @Render('admin/products/index')
   async index() {
     const viewData = [];
-    viewData['title'] = 'Admin Page - Admin - Online Store';
+    viewData['title'] = 'Продукти - Адмін панель - Soft Market';
     viewData['products'] = await this.productsService.findAll();
     viewData['categories'] = await this.categoriesService.findAll();
     return {
@@ -61,7 +61,7 @@ export class AdminProductsController {
   @Render('admin/products/edit')
   async edit(@Param('id') id: string) {
     const viewData = [];
-    viewData['title'] = 'Admin Page - Edit Product - Online Store';
+    viewData['title'] = 'Редагувати продукт - Адмін панель - Soft Market';
     viewData['product'] = await this.productsService.findOne(id);
     viewData['categories'] = await this.categoriesService.findAll();
     return {
