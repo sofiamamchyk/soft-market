@@ -33,7 +33,7 @@ export class AuthController {
       newUser.setEmail(body.email);
       newUser.setRole('client');
       newUser.setBalance(1000);
-      await this.usersService.createOrUpdate(newUser);
+      await this.usersService.create(newUser);
       return response.redirect('/auth/login');
     }
   }

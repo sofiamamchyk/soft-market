@@ -19,9 +19,13 @@ export class UsersService {
     return this.usersRepository.findOne(id);
   }
 
-  async createOrUpdate(user: User): Promise<User> {
+  async create(user: User): Promise<User> {
     const hash = await bcrypt.hash(user.getPassword(), 10);
     user.setPassword(hash);
+    return this.usersRepository.save(user);
+  }
+
+  async update(user: User): Promise<User> {
     return this.usersRepository.save(user);
   }
 

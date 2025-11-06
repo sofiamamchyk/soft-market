@@ -36,7 +36,7 @@ export class AdminUsersController {
       newUser.setPassword(body.password);
       newUser.setRole(body.role);
       newUser.setBalance(1000);
-      await this.usersService.createOrUpdate(newUser);
+      await this.usersService.create(newUser);
     }
   }
 
@@ -75,7 +75,7 @@ export class AdminUsersController {
       user.setName(body.name);
       user.setEmail(body.email);
       user.setRole(body.role);
-      await this.usersService.createOrUpdate(user);
+      await this.usersService.update(user);
       return response.redirect('/admin/users/');
     }
   }
