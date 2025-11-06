@@ -34,3 +34,21 @@ nav {
     bottom: 10px;
   }
 }
+
+.category-badges a {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.category-badge {
+  font-size: 0.9em;
+  font-weight: normal;
+  border: 1px solid rgba(0,0,0,.125);
+  padding: 14px 18px;
+  color: #909090
+}
+
+.category-badge.selected {
+  border: 1px solid #1abc9c;
+  color: #1abc9c;
+}

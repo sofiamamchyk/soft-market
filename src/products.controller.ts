@@ -1,21 +1,9 @@
-import { Controller, Get, Render, Param, Res } from '@nestjs/common';
+import { Controller, Get,Param, Res } from '@nestjs/common';
 import { ProductsService } from './models/products.service';
 
 @Controller('/products')
 export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
-
-  @Get('/')
-  @Render('products/index')
-  async index() {
-    const viewData = [];
-    viewData['title'] = 'Продукти - Soft Market';
-    viewData['subtitle'] = 'Список продуктів';
-    viewData['products'] = await this.productsService.findAll();
-    return {
-      viewData: viewData,
-    };
-  }
 
   @Get('/:id')
   async show(@Param() params, @Res() response) {

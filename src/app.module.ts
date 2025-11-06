@@ -15,6 +15,7 @@ import { AdminModule } from './admin/admin.module';
 import { AuthModule } from './auth/auth.module';
 import { CartModule } from './cart/cart.module';
 import { AccountModule } from './account/account.module';
+import { CategoriesController } from './categories.controller';
 
 @Global()
 @Module({
@@ -43,7 +44,7 @@ import { AccountModule } from './account/account.module';
     CartModule,
     AccountModule,
   ],
-  controllers: [AppController, ProductsController],
+  controllers: [AppController, CategoriesController, ProductsController],
   providers: [ProductsService, CategoriesService, UsersService, OrdersService],
   exports: [ProductsService, CategoriesService, UsersService, OrdersService],
 })
