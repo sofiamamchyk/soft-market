@@ -10,8 +10,69 @@
   background-color: #1abc9c !important;
 }
 
-nav {
-  font-weight: 700;
+.dropdown-menu-dark {
+  background-color: #4E6E8D;
+}
+.dropdown-menu-dark .dropdown-item:active {
+  background-color: rgb(255, 255, 255, .15);
+}
+
+.navbar-brand .part1 {
+  font-size: 32px;
+  line-height: 0;
+  color: #1abc9c;
+  font-weight: bold;
+}
+
+.navbar-brand .part2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-left: -5px;
+}
+
+.icon-link {
+  position: relative;
+}
+
+.dropdown-menu {
+  margin-bottom: 5px;
+}
+
+@media (min-width: 992px) {
+  .navbar-expand-lg .navbar-nav .nav-link {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+
+  .dropdown-menu {
+    margin-bottom: 0;
+  }
+
+  .icon-link {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+.icon-link .icon {
+  font-size: 24px;
+}
+
+nav .dropdown-menu .icon {
+  font-size: 22px;
+}
+nav .dropdown-menu .dropdown-item {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+nav .dropdown-divider {
+  margin: 0;
+}
+
+body {
+  min-height: 75rem;
+  padding-top: 88px;
 }
 
 .img-card {
