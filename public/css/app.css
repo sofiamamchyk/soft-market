@@ -11,10 +11,16 @@
 }
 
 .dropdown-menu-dark {
-  background-color: #4E6E8D;
+  /* background-color: #4E6E8D; */
+  background-color: #1a252f;
 }
 .dropdown-menu-dark .dropdown-item:active {
   background-color: rgb(255, 255, 255, .15);
+}
+
+.auth-btn {
+  min-width: 165px;
+  height: 46px
 }
 
 .navbar-brand .part1 {
@@ -215,4 +221,31 @@ body {
 
 .product-info .quantity-input {
   height: 46px;
+}
+
+.breadcrumb-item {
+  color: grey;
+  font-size: 13px;
+}
+
+.breadcrumb-item a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.breadcrumb-item.active {
+  color: #1abc9c;
+}
+
+.breadcrumb-item:not(.active) a:hover {
+  color: #1abc9c;
+}
+
+.breadcrumb-item+.breadcrumb-item::before {
+  color: #1abc9c;
+  padding-right: 1rem;
+}
+
+.breadcrumb-item+.breadcrumb-item {
+    padding-left: 1rem;
 }

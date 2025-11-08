@@ -33,6 +33,11 @@ export class CartController {
     viewData['subtitle'] = 'Кошик';
     viewData['total'] = total;
     viewData['productsInCart'] = productsInCart;
+
+    viewData['breadcrumbs'] = [
+      { name: 'Кошик', link: '/cart' },
+    ];    
+
     return {
       viewData: viewData,
     };

@@ -12,8 +12,10 @@ export class AuthController {
   @Render('auth/register')
   register() {
     const viewData = [];
-    viewData['title'] = 'Зареєструватись - Soft Market';
-    viewData['subtitle'] = 'Зареєструватись';
+    viewData['title'] = 'Реєстрація - Soft Market';
+    viewData['breadcrumbs'] = [
+      { name: 'Реєстрація', link: '/auth/login' },
+    ];
     return {
       viewData: viewData,
     };
@@ -42,8 +44,12 @@ export class AuthController {
   @Render('auth/login')
   login() {
     const viewData = [];
-    viewData['title'] = 'Увійти - Soft Market';
-    viewData['subtitle'] = 'Увійти';
+    viewData['title'] = 'Вхід - Soft Market';
+    viewData['breadcrumbs'] = [
+      { name: 'Вхід', link: '/auth/login' },
+    ];
+
+
     return {
       viewData: viewData,
     };

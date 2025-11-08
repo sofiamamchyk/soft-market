@@ -22,7 +22,6 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav ms-auto">
-          <a class="nav-link active" href="/">Головна</a>
           <a class="nav-link active" href="/categories">Продукти</a>
           <a class="nav-link active" href="/about">Про нас</a>
           <div class="vr bg-white mx-2 d-none d-lg-block"></div>
@@ -59,11 +58,32 @@
             </ul>
           </li>
           {{else}}
-          <a class="nav-link icon-link active" href="/auth/login">
+          {{!-- <a class="nav-link icon-link active" href="/auth/login">
             <i class="icon bi bi-person"></i>
             Увійти
-          </a>
-          {{!-- <a class="nav-link active" href="/auth/register">Зареєструватись</a> --}}
+          </a> --}}
+          <li class="nav-item dropdown">
+            <a class="nav-link active icon-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="icon bi bi-person"></i>
+              Увійти
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdown01" style="min-width: 280px;">
+              <li>
+                <a class="dropdown-item d-flex gap-2 align-items-center" href="/auth/login">
+                  <i class="icon bi bi-box-arrow-in-right"></i>
+                  Вхід
+                </a>
+              </li>
+              <li><hr class="dropdown-divider"></li>
+              <li>
+                <a class="dropdown-item d-flex gap-2 align-items-center" href="/auth/register">
+                  <i class="icon bi bi-person-plus"></i>
+                  Реєстрація
+                </a>
+              </li>
+            </ul>
+          </li>
+
           {{/if}}
           <div class="vr bg-white mx-2 d-none d-lg-block"></div>
           <a class="nav-link icon-link active" href="/cart">
@@ -74,9 +94,19 @@
     </div>
   </nav>
 
-  <header class="masthead text-center">
+  <header class="masthead">
     <div class="container">
-      {{#if viewData.subtitle}}<h2 style="padding-top: 32px;">{{ viewData.subtitle }}</h2>{{/if}}</h2>
+      {{#if viewData.breadcrumbs}}
+      <nav aria-label="breadcrumb" style="padding-top: 24px;">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/">Головна</a></li>
+          {{#each viewData.breadcrumbs}}
+            <li class="breadcrumb-item {{#if @last}}active{{/if}}">{{#if @last}}{{name}}{{else}}<a href="{{link}}">{{name}}</a>{{/if}}</li>
+          {{/each}}
+        </ol>
+      </nav>
+      {{/if}}
+      {{#if viewData.subtitle}}<h2 style="padding: 8px 0;">{{ viewData.subtitle }}</h2>{{/if}}</h2>
     </div>
   </header>
   <!-- header -->

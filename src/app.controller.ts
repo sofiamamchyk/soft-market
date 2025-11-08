@@ -22,6 +22,10 @@ export class AppController {
     const viewData = [];
     viewData['title'] = 'Про нас - Soft Market';
     viewData['subtitle'] = 'Про нас';
+    viewData['breadcrumbs'] = [
+      { name: 'Про нас', link: '/about' },
+    ];
+
     return {
       viewData: viewData,
     };

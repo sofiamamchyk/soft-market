@@ -17,6 +17,9 @@ export class CategoriesController {
     viewData['subtitle'] = 'Всі продукти';
     viewData['products'] = await this.productsService.findAll();
     viewData['categories'] = await this.categoriesService.findAll();
+    viewData['breadcrumbs'] = [
+      { name: 'Всі продукти', link: '/categories' }
+    ];
     return {
       viewData: viewData,
     };
@@ -34,6 +37,10 @@ export class CategoriesController {
     viewData['category'] = category;
     viewData['products'] = category.products;
     viewData['categories'] = await this.categoriesService.findAll();
+    viewData['breadcrumbs'] = [
+      { name: category.getName(), link: `/categories/${category.getId()}` },
+    ];
+
     return response.render('categories/index', { viewData: viewData });
   }
 }

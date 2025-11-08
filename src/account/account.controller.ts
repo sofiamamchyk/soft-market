@@ -14,6 +14,10 @@ export class AccountController {
     viewData['orders'] = await this.ordersService.findByUserId(
       request.session.user.id,
     );
+    viewData['breadcrumbs'] = [
+      { name: 'Мої замовлення', link: '/account/orders' },
+    ];    
+
     return {
       viewData: viewData,
     };

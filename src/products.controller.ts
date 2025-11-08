@@ -14,6 +14,11 @@ export class ProductsController {
     const viewData = [];
     viewData['title'] = product.getName() + ' - Soft Market';
     viewData['product'] = product;
+    viewData['breadcrumbs'] = [
+      { name: product.category.getName(), link: `/categories/${product.category.getId()}` },
+      { name: product.getName(), link: `/products/${product.getId()}` },
+    ];
+
     return response.render('products/show', { viewData: viewData });
   }
 }
