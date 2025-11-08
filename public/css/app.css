@@ -71,7 +71,7 @@ nav .dropdown-divider {
 }
 
 body {
-  min-height: 75rem;
+  /* min-height: 75rem; */
   padding-top: 88px;
 }
 
@@ -80,20 +80,28 @@ body {
   object-fit: cover;
 }
 
-.categories-list {
-  img {
-    min-height: 140px;
-    max-height: 300px;
-  }
+/* Product categories list */
+.categories-list img {
+  height: 15vw;
+  min-height: 200px;
+  max-height: 300px;
+}
 
-  .category-item {
-    position: relative;
-  }
+.categories-list .title-container {
+  position: absolute;
+  bottom: 0;
+  text-decoration: none;
+  background: rgba(0, 0, 0, .47);
+}
 
-  .category-title {
-    position: absolute;
-    bottom: 10px;
-  }
+.categories-list .title {
+  padding: 16px 8px;
+  margin-bottom: 0;
+  font-weight: 400;
+}
+
+.categories-list .category-item {
+  position: relative;
 }
 
 .category-badges a {
