@@ -33,7 +33,18 @@ async function bootstrap() {
     } else {
         return ''
     }
-});
+  });
+  hbs.registerHelper('productInCart', function(products, id, class1, class2){
+    console.log('ID: ', products)
+    if (Object.keys(products || {}).includes(`${id}`)) {
+        return class1;
+    } else {
+        return class2;
+    }
+  });
+  hbs.registerHelper('cartCount', function(products){
+    return Object.keys(products || {}).length;
+  });
   
   app.setViewEngine('hbs');
   app.use(

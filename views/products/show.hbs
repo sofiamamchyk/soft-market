@@ -18,19 +18,9 @@
                 <span class="product-price__currency">грн</span>
               </div>
 
-              <form method="POST" action="/cart/add/{{getId}}">
-                <div class="row">
-                  <div class="col-auto">
-                    <div class="input-group col-auto">
-                      <div class="input-group-text">Кількість</div>
-                      <input type="number" min="1" max="10" class="form-control quantity-input" name="quantity" value="1">
-                    </div>
-                  </div>
-                  <div class="col-auto">
-                    <button class="buy-btn btn bg-primary text-white" type="submit"><i class="bi bi-cart"></i>У кошик</button>
-                  </div>
-                </div>
-              </form>
+              <button class="add-to-cart-btn btn {{productInCart @root.session.products id 'btn-outline-primary' 'btn-primary'}}" type="button" data-product-id="{{getId}}">
+                <i class="bi {{productInCart @root.session.products id 'bi-check2' 'bi-cart'}}"></i>{{productInCart @root.session.products id 'В кошику' 'Купити'}}
+              </button>
             </div>
           </div>
         </div>

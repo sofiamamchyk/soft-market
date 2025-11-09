@@ -3,12 +3,12 @@
     <div class="row category-badges mb-3">
         <div class="col">
             <a href="/categories" class="mb-2 me-1">
-                <span class="category-badge badge rounded-pill {{selected undefined @root.viewData.category.id}}">Всі продукти</span>
+                <span class="category-badge badge rounded-pill {{selected undefined viewData.category.id}}">Всі продукти</span>
             </a>
             {{#each viewData.categories}}
-                <a href="/categories/{{getId}}" class="mb-2 me-1">
-                    <span class="category-badge badge rounded-pill {{selected id @root.viewData.category.id}}">{{getName}}</span>
-                </a>
+              <a href="/categories/{{getId}}" class="mb-2 me-1">
+                  <span class="category-badge badge rounded-pill {{selected id @root.viewData.category.id}}">{{getName}}</span>
+              </a>
             {{/each}}
         </div>
     </div>
@@ -30,12 +30,9 @@
                 <span class="product-price__value">{{getPrice}}</span>
                 <span class="product-price__currency">грн</span>
               </div>
-              <form method="POST" action="/cart/add/{{getId}}">
-                <input type="hidden" name="quantity" value="1">
-                <button class="product-card__cart-btn btn bg-primary text-white" type="submit">
-                  <i class="bi bi-cart"></i>
-                </button>
-              </form>
+              <button type="button" data-product-id="{{getId}}" class="add-to-cart-btn btn {{productInCart @root.session.products id 'btn-outline-primary' 'btn-primary'}}">
+                <i class="bi {{productInCart @root.session.products id 'bi-check2' 'bi-cart'}}"></i>
+              </button>
             </div>
           </div>
         </div>

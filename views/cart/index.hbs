@@ -1,26 +1,21 @@
 {{#> app}}
   {{#*inline "content"}}
     <div class="card">
-      <div class="card-header">
-        Продукти в корзині
-      </div>
       <div class="card-body">
         <table class="table table-bordered table-striped text-center">
           <thead>
             <tr>
-              <th scope="col">#</th>
               <th scope="col">Назва</th>
-              <th scope="col">Ціна</th>
               <th scope="col">Кількість</th>
+              <th scope="col">Ціна</th>
             </tr>
           </thead>
           <tbody>
             {{#each viewData.productsInCart}}
             <tr>
-              <td>{{getId}}</td>
               <td>{{getName}}</td>
-              <td>{{getPrice}} грн.</td>
               <td>{{lookup ../session.products id}}</td>
+              <td>{{getPrice}} грн.</td>
             </tr>
             {{/each}}
           </tbody>

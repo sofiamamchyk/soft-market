@@ -44,14 +44,14 @@ export class CartController {
   }
 
   @Post('/add/:id')
-  @Redirect('/cart')
-  add(@Param('id') id: number, @Body() body, @Req() request) {
+  add(@Param('id') id: number, @Req() request) {
     let productsInSession = request.session.products;
     if (!productsInSession) {
       productsInSession = {};
     }
-    productsInSession[id] = body.quantity;
+    productsInSession[id] = 1;
     request.session.products = productsInSession;
+    return { success: true, cartCount: Object.keys(productsInSession).length };
   }
 
   @Get('/delete')
