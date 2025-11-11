@@ -9,7 +9,7 @@ export class ProductsController {
   async show(@Param() params, @Res() response) {
     const product = await this.productsService.findOne(params.id);
     if (product === undefined) {
-      return response.redirect('/products');
+      return response.redirect('/categories');
     }
     const viewData = [];
     viewData['title'] = product.getName() + ' - Soft Market';
