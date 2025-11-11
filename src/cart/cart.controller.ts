@@ -89,7 +89,7 @@ export class CartController {
     request.session.products = productsInSession;
   }
 
-  @Get('/delete')
+  @Get('/deleteAll')
   @Redirect('/cart/')
   deleteAll(@Req() request) {
     request.session.products = null;
