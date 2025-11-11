@@ -24,6 +24,9 @@ async function bootstrap() {
   hbs.registerHelper('formatTextareaContent', function(value) {
     return value.split('\n').map(item => item.trim()).join('&#10;');
   });
+  hbs.registerHelper('formatPrice', function(value) {
+    return (value || 0).toFixed(2);
+  });
   hbs.registerHelper('formatLineBreaks', function(value) {
     return value?.replaceAll(/\n/g, '<br>');
   });
@@ -35,7 +38,6 @@ async function bootstrap() {
     }
   });
   hbs.registerHelper('productInCart', function(products, id, class1, class2){
-    console.log('ID: ', products)
     if (Object.keys(products || {}).includes(`${id}`)) {
         return class1;
     } else {

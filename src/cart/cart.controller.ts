@@ -54,9 +54,44 @@ export class CartController {
     return { success: true, cartCount: Object.keys(productsInSession).length };
   }
 
+  @Get('/delete/:id')
+  @Redirect('/cart/')
+  delete(@Param('id') id: number, @Req() request) {
+    let productsInSession = request.session.products;
+    if (!productsInSession) {
+      return;
+    }
+    delete productsInSession[id];
+    request.session.products = Object.keys(productsInSession).length > 0 ? productsInSession : null;
+  }
+
+  @Get('/plus/:id')
+  @Redirect('/cart/')
+  plus(@Param('id') id: number, @Req() request) {
+    let productsInSession = request.session.products;
+    if (!productsInSession) {
+      productsInSession = {};
+    }
+    productsInSession[id] = (productsInSession[id] || 0) + 1;
+    request.session.products = productsInSession;
+  }
+
+  @Get('/minus/:id')
+  @Redirect('/cart/')
+  minus(@Param('id') id: number, @Req() request) {
+    let productsInSession = request.session.products;
+    if (!productsInSession) {
+      productsInSession = {};
+    }
+    if (productsInSession[id] >= 2) {
+      productsInSession[id] = productsInSession[id] - 1;
+    }
+    request.session.products = productsInSession;
+  }
+
   @Get('/delete')
   @Redirect('/cart/')
-  delete(@Req() request) {
+  deleteAll(@Req() request) {
     request.session.products = null;
   }
 

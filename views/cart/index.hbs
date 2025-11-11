@@ -1,37 +1,73 @@
 {{#> app}}
   {{#*inline "content"}}
-    <div class="card">
-      <div class="card-body">
-        <table class="table table-bordered table-striped text-center">
-          <thead>
-            <tr>
-              <th scope="col">Назва</th>
-              <th scope="col">Кількість</th>
-              <th scope="col">Ціна</th>
-            </tr>
-          </thead>
-          <tbody>
-            {{#each viewData.productsInCart}}
-            <tr>
-              <td>{{getName}}</td>
-              <td>{{lookup ../session.products id}}</td>
-              <td>{{getPrice}} грн.</td>
-            </tr>
-            {{/each}}
-          </tbody>
-        </table>
-        <div class="row">
-          <div class="text-end">
-            <a class="btn btn-outline-secondary mb-2"><b>Загальна ціна:</b> {{viewData.total}} грн.</a>
-            {{#if viewData.productsInCart}}
-            <a href="/cart/purchase" class="btn bg-primary text-white mb-2">Оформити замовлення</a>
-            <a href="/cart/delete" class="btn btn-danger mb-2">
-              Видалити з корзини
-            </a>
-            {{/if}}
+    {{#if viewData.productsInCart}}
+      <div class="cart row mb-5">
+        <div class="col-md-8">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex justify-content-end mb-2">
+                <a href="/cart/deleteAll" class="clean-cart-btn btn btn-link text-danger">
+                  Очистити кошик
+                </a>
+              </div>
+              <ul class="cart-list list-group">
+                {{#each viewData.productsInCart}}
+                  <li class="list-group-item">
+                    <div class="cart-item row align-items-center">
+                      <div class="col-md-1 px-0">
+                        <a class="product-name" href="/products/{{getId}}">
+                          <img class="product-img" src="/uploads/{{getImage}}" />
+                        </a>
+                      </div>
+                      <div class="col-md-6">
+                        <a class="product-name" href="/products/{{getId}}">{{getName}}</a>
+                      </div>
+                      <div class="col-md-2 px-0">
+                        <div class="input-group">
+                          <a href="/cart/minus/{{getId}}" class="btn btn-outline-secondary">-</a>
+                          <input type="text" class="form-control" value="{{lookup ../session.products id}}" disabled style="max-width: 45px;">
+                          <a href="/cart/plus/{{getId}}" class="btn btn-outline-secondary">+</a>
+                        </div>
+                      </div>
+                      <div class="col-md-2">
+                        <div class="product-price">
+                          <span class="product-price__value">{{getPrice}}</span>
+                          <span class="product-price__currency">грн</span>
+                        </div>
+                      </div>
+                      <div class="col-md-1">
+                        <a href="/cart/delete/{{getId}}" class="delete-btn btn">
+                          <i class="bi bi-trash3 text-danger"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </li>
+                {{/each}}
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <div class="row mb-4">
+                <div class="col d-flex align-items-center justify-content-between py-1">
+                  <p class="total-price-label mb-0">Сума до сплати: </p>
+                  <div class="product-price">
+                    <span class="product-price__value">{{formatPrice viewData.total}}</span>
+                    <span class="product-price__currency">грн</span>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <a href="/cart/purchase" class="purchase-btn btn bg-primary text-white mb-2">Оформити замовлення</a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    {{/if}}
   {{/inline}}
 {{/app}}
