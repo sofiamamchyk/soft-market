@@ -1,46 +1,46 @@
 {{#> app}}
   {{#*inline "content"}}
-    {{#each viewData.orders}}
-    <div class="card mb-4">
-      <div class="card-header">
-        Замовлення #{{getId}}
-      </div>
-      <div class="card-body">
-        <b>Дата:</b> {{getDate}}<br />
-        <b>Загальна ціна:</b> {{getTotal}} грн.<br />
-        <table class="table table-bordered table-striped text-center mt-3">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Назва продукту</th>
-              <th scope="col">Ціна</th>
-              <th scope="col">Кількість</th>
-            </tr>
-            <tbody>
-              {{#each getItems}}
-              <tr>
-                <td>{{getId}}</td>
-                {{#with getProduct}}
-                <td>
-                  <a class="link-success" href="/products/{{getId}}">
-                    {{getName}}
-                  </a>
-                </td>
-                {{/with}}
-                <td>{{getPrice}} грн.</td>
-                <td>{{getQuantity}}</td>
-              </tr>
-              {{/each}}
-            </tbody>
-          </thead>
-          
-        </table>
-      </div>
-    </div>
-    {{else}}
-    <div class="alert alert-danger" role="alert">
-      Seems to be that you have not purchased anything in our store =(.
-    </div>
-    {{/each}}
+    <ul class="my-orders list-group mb-5">
+      <li class="list-group-item list-group-header row d-flex align-items-center">
+        <div class="col-md-2">
+          Номер замовлення
+        </div>
+        <div class="col-md-4">
+          Продукти
+        </div>
+        <div class="col-md-2">
+          Статус
+        </div>
+        <div class="col-md-2">
+          Дата замовлення
+        </div>
+        <div class="col-md-2">
+          Cума
+        </div>
+      </li>
+      {{#each viewData.orders}}
+        <li class="list-group-item row d-flex align-items-center">
+          <div class="col-md-2">
+            <a href="/orders/{{getId}}" class="order-number button-link">{{getId}}</a>
+          </div>
+          <div class="col-md-4">
+              <div class="dflex">
+                {{#each getItems}}
+                  <img class="product-img" src="/uploads/{{product.image}}" />
+                {{/each}}
+              </div>
+          </div>
+          <div class="col-md-2">
+            <span class="order-status order-status--{{status}} badge">{{orderStatus status}}</span>
+          </div>
+          <div class="col-md-2">
+            {{getDate}}
+          </div>
+          <div class="col-md-2">
+            <strong>{{getTotal}}</strong>&nbsp;<span style="font-size: 14px;">грн</span>
+          </div>
+        </li>
+      {{/each}}
+    </ul>
   {{/inline}}
 {{/app}}

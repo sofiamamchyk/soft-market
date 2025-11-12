@@ -430,3 +430,51 @@ body {
 .purchase a:active {
   color: #1abc9c;
 }
+
+.list-group-header {
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.list-group-header > div {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+.list-group-header > div:not(:first-child) {
+  border-left: 1px solid rgba(0, 0, 0, .125);
+}
+
+.my-orders .product-img {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+}
+
+.order-number {
+  text-decoration: none;
+  color: #1abc9c;
+}
+.order-number:hover {
+  text-decoration: underline;
+  color: #1abc9c;
+}
+.order-number:active {
+  color: #1abc9c;
+}
+
+.order-status {
+  color: #6c757d;
+  border: 1px solid #6c757d;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.order-status--pending {
+  color: #ffb000;
+  border: 1px solid #ffb000;
+}
+
+.order-status--done {
+  color: #1abc9c;
+  border: 1px solid #1abc9c;
+}
