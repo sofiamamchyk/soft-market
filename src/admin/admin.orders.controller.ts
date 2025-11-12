@@ -59,7 +59,6 @@ export class AdminOrdersController {
     //   request.session.flashErrors = errors;
     //   return response.redirect('/admin/orders/' + id);
     // } else {
-      console.log(JSON.stringify(body, null, 2))
       const order = await this.ordersService.findOne(id);
       order.setStatus(body.status);
       order.setContactPhone(body.contactPhone);

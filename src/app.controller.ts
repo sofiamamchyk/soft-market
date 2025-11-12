@@ -1,9 +1,13 @@
-import { Controller, Get, Render } from '@nestjs/common';
+import { Controller, Get, Query, Render } from '@nestjs/common';
 import {CategoriesService} from './models/categories.service';
+import {ProductsService} from './models/products.service';
 
 @Controller()
 export class AppController {
-  constructor(private readonly categoriesService: CategoriesService) {}
+  constructor(
+    private readonly categoriesService: CategoriesService,
+    private readonly productsService: ProductsService,
+  ) {}
 
   @Get('/')
   @Render('index')
@@ -28,6 +32,40 @@ export class AppController {
 
     return {
       viewData: viewData,
+    };
+  }
+
+
+  @Get('/search')
+  @Render('search')
+  async search(@Query() query) {
+    const products = await this.productsService.search(query.value);
+    const viewData = [];
+    viewData['title'] = 'Пошук - Soft Market';
+    viewData['subtitle'] = `Результати пошуку "${query.value}"`;
+    viewData['search'] = query.value;
+    viewData['products'] = products;
+    viewData['productsCount'] = products.length;
+    viewData['breadcrumbs'] = [
+      { name: 'Пошук' }
+    ];
+    return {
+      viewData: viewData,
+    };
+  }
+
+  @Get('/autocomplete')
+  async autocomplete(@Query() query) {
+    if (!query.value) {
+        return {
+          success: true,
+          products: []
+        };
+    }
+    const products = await this.productsService.search(query.value);
+    return {
+      success: true,
+      products
     };
   }
 }

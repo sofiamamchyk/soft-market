@@ -1,0 +1,36 @@
+{{#> app}}
+  {{#*inline "content"}}
+    <div class="row">
+      <div class="col">
+        <p style="color: #909090;">Знайдено: {{viewData.productsCount}}</p>
+      </div>
+    </div>
+    <div class="row" style="--bs-gutter-x: 1rem;">
+      {{#each viewData.products}}
+      <div class="col-md-4 col-lg-3 mb-3">
+        <div class="card product-card">
+          <a href="/products/{{getId}}">
+            <img src="/uploads/{{getImage}}" class="product-card__img card-img-top img-card">
+          </a>
+          <div class="card-body">
+            <div class="product-card__title mb-2">
+              <a href="/products/{{getId}}" class="card-text w-100">
+                {{getName}}
+              </a>
+            </div>
+            <div class="product-card__footer">
+              <div class="product-price">
+                <span class="product-price__value">{{getPrice}}</span>
+                <span class="product-price__currency">грн</span>
+              </div>
+              <button type="button" data-product-id="{{getId}}" class="add-to-cart-btn btn {{productInCart @root.session.products id 'btn-outline-primary' 'btn-primary'}}">
+                <i class="bi {{productInCart @root.session.products id 'bi-check2' 'bi-cart'}}"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  {{/inline}}
+{{/app}}
