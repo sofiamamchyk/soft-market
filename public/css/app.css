@@ -478,3 +478,13 @@ body {
   color: #1abc9c;
   border: 1px solid #1abc9c;
 }
+
+.order-info label {
+  display: block;
+  color: #909090;
+  font-size: 14px;
+}
+
+.order-info .order-status {
+  font-size: 15px;
+}
