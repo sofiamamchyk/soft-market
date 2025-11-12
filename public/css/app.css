@@ -102,6 +102,7 @@ nav .dropdown-divider {
 body {
   /* min-height: 75rem; */
   padding-top: 88px;
+  background: #F6F7FA;
 }
 
 .img-card {
@@ -139,6 +140,7 @@ body {
 }
 
 .category-badge {
+  background-color: #fff;
   font-size: 0.9em;
   font-weight: normal;
   border: 1px solid rgba(0,0,0,.125);
@@ -361,4 +363,128 @@ body {
 
 .cart .purchase-btn:focus {
   box-shadow: none;
+}
+
+.checkout .card-title {
+  padding: 1.5rem;
+}
+
+.checkout .quantity {
+  margin-bottom: 0;
+}
+
+.checkout .quantity span {
+  font-size: 13px;
+  color: #909090;
+}
+
+.collapse-btn {
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  font-size: 20px;
+  border-radius: 20px;
+  line-height: 20px;
+  padding: 0;
+  color: inherit;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.collapse-btn.collapsed {
+  transform: rotate(180deg);
+}
+
+.collapse-btn:hover {
+  color: inherit;
+}
+
+.collapse-btn:focus {
+  box-shadow: none;
+}
+
+.checkout label {
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.delivery .list-group {
+  padding: 0;
+  margin-bottom: 8px;
+}
+
+.delivery .list-group-item {
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, .125);
+  padding: 1.5rem;
+}
+
+.purchase a {
+  text-decoration: none;
+  color: inherit;
+  font-weight: bold;
+}
+.purchase a:hover {
+  color: #1abc9c;
+}
+.purchase a:active {
+  color: #1abc9c;
+}
+
+.list-group-header {
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.list-group-header > div {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+.list-group-header > div:not(:first-child) {
+  border-left: 1px solid rgba(0, 0, 0, .125);
+}
+
+.my-orders .product-img {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+}
+
+.order-number {
+  text-decoration: none;
+  color: #1abc9c;
+}
+.order-number:hover {
+  text-decoration: underline;
+  color: #1abc9c;
+}
+.order-number:active {
+  color: #1abc9c;
+}
+
+.order-status {
+  color: #6c757d;
+  border: 1px solid #6c757d;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.order-status--pending {
+  color: #ffb000;
+  border: 1px solid #ffb000;
+}
+
+.order-status--done {
+  color: #1abc9c;
+  border: 1px solid #1abc9c;
+}
+
+.order-info label {
+  display: block;
+  color: #909090;
+  font-size: 14px;
+}
+
+.order-info .order-status {
+  font-size: 15px;
 }

@@ -1,0 +1,14 @@
+{{#> app}}
+  {{#*inline "content"}}
+    <div class="purchase row mb-3">
+      <p>Вітаємо, ваше <a href="/account/orders/{{orderId}}">замовлення №{{viewData.orderId}}</a> успішно оформлено.</p>
+      <p>Подальший статус замовлення можете відслідковувати в <a href="/account/orders">особистому кабінеті.</a></p>
+    </div>
+    <div class="row">
+      <div class="col">
+        <a class="btn btn-outline-secondary" href="/categories" style="width: auto; min-width: 250px; margin-right: 16px;">Продовжити покупки</a>
+        <a class="btn btn-primary" href="/account/orders/{{orderId}}" style="width: auto; min-width: 250px;">Переглянути замовлення</a>
+      </div>
+    </div>
+  {{/inline}}
+{{/app}}

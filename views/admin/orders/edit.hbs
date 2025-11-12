@@ -2,7 +2,7 @@
   {{#*inline "content"}}
     <div class="card mb-4">
       <div class="card-header">
-        Редагувати замовлення #{{viewData.order.id}}
+        <h4>Редагувати замовлення №{{viewData.order.id}}</h4>
       </div>
       <div class="card-body">
         {{#if flashErrors}}
@@ -12,41 +12,81 @@
         {{/if}}
         {{#with viewData.order}}
         <form method="POST" action="/admin/orders/{{getId}}/update">
-          <div class="row mb-3">
-            <div class="col">
-                <b>Дата:</b> {{getDate}}
+          <div class="row mb-5">
+            <div class="col-3">
+                <label for="status" class="form-label">Статус</label>
+                <select id="status" class="form-control form-select" name="status">
+                  {{#each @root.viewData.statuses}}
+                    <option value="{{@key}}" {{selected @key ../status}}>{{orderStatus @key}}</option>
+                  {{/each}}
+                </select>
+            </div>
+            <div class="col-3">
+              <label class="form-label">Дата</label>
+              <p>{{getDate}}</p>
+            </div>
+            <div class="col-3">
+              <label class="form-label">Користувач</label>
+              <a href="/admin/users/{{user.id}}" style="display: block;">{{user.email}}</a>
+            </div>
+            <div class="col-3">
+              <label class="form-label">Cума</label>
+              <p>{{getTotal}} грн.</p>
             </div>
           </div>
-          <div class="row mb-3">
-            <div class="col">
-              <b>Користувач:</b>
-              <a href="/admin/users/{{user.id}}" >{{user.email}}</a>
+          <div class="row mb-2">
+            <h5>Контактні дані</h5>
+          </div>
+          <div class="row mb-5">
+            <div class="col-3">
+                <label for="phone" class="form-label">Номер телефону</label>
+                <input id="phone" type="text" class="form-control" name="contactPhone" value="{{getContactPhone}}">
+            </div>
+            <div class="col-3">
+                <label for="name" class="form-label">Ім'я</label>
+                <input id="name" type="text" class="form-control" name="contactName" value="{{getContactName}}">
+            </div>
+            <div class="col-3">
+                <label for="email" class="form-label">Ел. пошта</label>
+                <input id="email" type="email" class="form-control" name="contactEmail" value="{{getContactEmail}}">
             </div>
           </div>
-          <div class="row mb-3">
-            <div class="col">
-                <b>Загальна ціна:</b> {{getTotal}} грн.
+          <div class="row mb-2">
+            <h5>Доставка і оплата</h5>
+          </div>
+          <div class="row mb-5">
+            <div class="col-3">
+              <label for="delivery" class="form-label">Доставка</label>
+              <select id="delivery" class="form-control form-select" name="deliveryType">
+                {{#each @root.viewData.deliveryTypes}}
+                  <option value="{{@key}}" {{selected @key ../deliveryType}}>{{deliveryType @key}}</option>
+                {{/each}}
+              </select>
+            </div>
+            <div class="col-3">
+              <label for="payment" class="form-label">Спосіб оплати</label>
+              <select id="payment" class="form-control form-select" name="paymentType">
+                {{#each @root.viewData.paymentTypes}}
+                  <option value="{{@key}}" {{selected @key ../paymentType}}>{{paymentType @key}}</option>
+                {{/each}}
+              </select>
             </div>
           </div>
-          <div class="row mb-3">
-            <div class="col">
-              <b>Продукти:</b>
-            </div>
+          <div class="row mb-2">
+            <h5>Замовлені продукти</h5>
           </div>
-          <div class="row mb-1">
+          <div class="row mb-3">
             <div class="col">
                 <table class="table table-bordered table-striped text-center">
                     <thead>
                         <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Назва</th>
-                        <th scope="col">Кількість</th>
-                        <th scope="col">Ціна</th>
+                          <th scope="col">Назва продукту</th>
+                          <th scope="col">Кількість</th>
+                          <th scope="col">Ціна</th>
                         </tr>
                         <tbody>
                         {{#each getItems}}
                         <tr>
-                            <td>{{getId}}</td>
                             {{#with getProduct}}
                             <td>
                                 <a href="/admin/products/{{getId}}">{{getName}}</a>
@@ -61,7 +101,7 @@
                 </table>
             </div>
           </div>
-          {{!-- <button type="submit" class="btn btn-primary">Зберегти</button> --}}
+          <button type="submit" class="btn btn-primary">Зберегти</button>
         </form>
         {{/with}}
       </div>

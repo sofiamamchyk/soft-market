@@ -16,6 +16,7 @@ import { AuthModule } from './auth/auth.module';
 import { CartModule } from './cart/cart.module';
 import { AccountModule } from './account/account.module';
 import { CategoriesController } from './categories.controller';
+import {CheckoutModule} from './checkout/checkout.module';
 
 @Global()
 @Module({
@@ -43,6 +44,7 @@ import { CategoriesController } from './categories.controller';
     AuthModule,
     CartModule,
     AccountModule,
+    CheckoutModule,
   ],
   controllers: [AppController, CategoriesController, ProductsController],
   providers: [ProductsService, CategoriesService, UsersService, OrdersService],

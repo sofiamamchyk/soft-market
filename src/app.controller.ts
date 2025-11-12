@@ -9,7 +9,7 @@ export class AppController {
   @Render('index')
   async index() {
     const viewData = [];
-    viewData['title'] = 'Головна Сторінка - Soft Market';
+    viewData['title'] = 'Головна - Soft Market';
     viewData['categories'] = await this.categoriesService.findAll();
     return {
       viewData: viewData,

@@ -3,9 +3,10 @@ import {
   Param, Req, Res
 } from '@nestjs/common';
 import {UsersService} from 'src/models/users.service';
-import { UserValidator } from '../validators/user.validator';
-import { User } from '../models/user.entity';
 import {OrdersService} from 'src/models/orders.service';
+import {orderStatusMap} from 'src/utils/orderStatusMap';
+import {deliveryTypeMap} from 'src/utils/deliveryTypeMap';
+import {paymentTypeMap} from 'src/utils/paymentTypeMap';
 
 @Controller('/admin/orders')
 export class AdminOrdersController {
@@ -37,6 +38,9 @@ export class AdminOrdersController {
     const viewData = [];
     viewData['title'] = 'Редагувати замовлення - Адмін панель - Soft Market';
     viewData['order'] = await this.ordersService.findOne(id);
+    viewData['statuses'] = orderStatusMap;
+    viewData['deliveryTypes'] = deliveryTypeMap;
+    viewData['paymentTypes'] = paymentTypeMap;
     return {
       viewData: viewData,
     };
@@ -53,14 +57,18 @@ export class AdminOrdersController {
     // const errors: string[] = UserValidator.validate(body, toValidate);
     // if (errors.length > 0) {
     //   request.session.flashErrors = errors;
-    //   return response.redirect('/admin/users/' + id);
+    //   return response.redirect('/admin/orders/' + id);
     // } else {
-    //   const user = await this.usersService.findOne(id);
-    //   user.setName(body.name);
-    //   user.setEmail(body.email);
-    //   user.setRole(body.role);
-    //   await this.usersService.update(user);
-    //   return response.redirect('/admin/users/');
-    // }
+      console.log(JSON.stringify(body, null, 2))
+      const order = await this.ordersService.findOne(id);
+      order.setStatus(body.status);
+      order.setContactPhone(body.contactPhone);
+      order.setContactName(body.contactName);
+      order.setContactEmail(body.contactEmail);
+      order.setDeliveryType(body.deliveryType);
+      order.setPaymentType(body.paymentType);
+      await this.ordersService.createOrUpdate(order);
+
+      return response.redirect('/admin/orders/');
   }
 }

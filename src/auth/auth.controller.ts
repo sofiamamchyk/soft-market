@@ -70,6 +70,8 @@ export class AuthController {
         request.session.user = {
           id: user.getId(),
           name: user.getName(),
+          email: user.getEmail(),
+          phone: user.getPhone(),
           role: user.getRole(),
         };
         return response.redirect('/');

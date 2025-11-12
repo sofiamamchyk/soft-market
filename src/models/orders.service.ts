@@ -12,7 +12,12 @@ export class OrdersService {
 
 
   findAll(): Promise<Order[]> {
-    return this.ordersRepository.find({ relations: ['user']});
+    return this.ordersRepository.find({
+      relations: ['user'],
+      order: {
+        date: 'DESC'
+      }
+    });
   }
 
   findOne(id: string): Promise<Order> {
@@ -29,6 +34,9 @@ export class OrdersService {
         user: { id: id },
       },
       relations: ['items', 'items.product'],
+      order: {
+        date: 'DESC'
+      }
     });
   }
 

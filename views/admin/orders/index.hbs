@@ -2,16 +2,17 @@
   {{#*inline "content"}}
     <div class="card">
       <div class="card-header">
-        Керувати замовленнями
+        <h4>Замовлення</h4>
       </div>
       <div class="card-body">
         <table class="table table-bordered table-striped">
           <thead>
             <tr>
-              <th scope="col">#</th>
+              <th scope="col">№</th>
               <th scope="col">Дата</th>
               <th scope="col">Користувач</th>
-              <th scope="col">Загальна ціна</th>
+              <th scope="col">Сума</th>
+              <th scope="col">Статус</th>
               <th scope="col">Редагувати</th>
               <th scope="col">Видалити</th>
             </tr>
@@ -23,6 +24,7 @@
               <td>{{getDate}}</td>
               <td><a href="/admin/users/{{user.id}}" >{{user.email}}</a></td>
               <td>{{getTotal}} грн</td>
+              <td>{{orderStatus status}}</td>
               <td>
                 <a class="btn btn-primary" href="/admin/orders/{{getId}}">
                   <i class="bi-pencil"></i>

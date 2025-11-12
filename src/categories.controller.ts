@@ -13,7 +13,7 @@ export class CategoriesController {
   @Render('categories/index')
   async index() {
     const viewData = [];
-    viewData['title'] = 'Продукти - Soft Market';
+    viewData['title'] = 'Всі продукти - Soft Market';
     viewData['subtitle'] = 'Всі продукти';
     viewData['products'] = await this.productsService.findAll();
     viewData['categories'] = await this.categoriesService.findAll();
