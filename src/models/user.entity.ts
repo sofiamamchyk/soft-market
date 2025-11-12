@@ -21,6 +21,9 @@ export class User {
   @Column()
   balance: number;
 
+  @Column()
+  phone: string;
+
   @OneToMany(() => Order, (order) => order.user)
   orders: Order[];
 
@@ -46,6 +49,14 @@ export class User {
 
   setEmail(email: string) {
     this.email = email;
+  }
+
+  getPhone(): string {
+    return this.phone;
+  }
+
+  setPhone(phone: string) {
+    this.phone = phone;
   }
 
   getPassword(): string {

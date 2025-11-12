@@ -1,0 +1,150 @@
+{{#> app}}
+  {{#*inline "content"}}
+  <form action="/checkout/purchase" method="POST">
+    <div class="checkout cart row mb-5">
+      <div class="col-md-8">
+        <div class="card mb-4">
+          <div class="card-title d-flex align-items-center justify-content-between mb-0">
+              <h4 class="mb-0">Продуктів у кошику: {{cartCount session.products}} </h4>
+              <button class="collapse-btn btn btn-link collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#products" aria-expanded="false" aria-controls="products">
+                <i class="bi bi-chevron-up"></i>
+              </button>
+          </div>
+          <div class="card-body collapse pt-0" id="products">
+            <ul class="cart-list list-group">
+              {{#each viewData.productsInCart}}
+                <li class="list-group-item">
+                  <div class="cart-item row align-items-center">
+                    <div class="col-md-1 px-0">
+                      <a class="product-name" href="/products/{{getId}}">
+                        <img class="product-img" src="/uploads/{{getImage}}" />
+                      </a>
+                    </div>
+                    <div class="col-md-7">
+                      <a class="product-name" href="/products/{{getId}}">{{getName}}</a>
+                    </div>
+                    <div class="col-md-2 px-0">
+                      <div class="input-group">
+                        <p class="quantity">
+                          {{lookup ../session.products id}} <span>шт.</span>
+                        </p>
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="product-price">
+                        <span class="product-price__value">{{getPrice}}</span>
+                        <span class="product-price__currency">грн</span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              {{/each}}
+            </ul>
+          </div>
+        </div>
+        <div class="delivery card mb-4">
+          <div class="card-title d-flex align-items-center justify-content-between mb-0">
+              <h4 class="mb-0">Доставка і оплата</h4>
+              <button class="collapse-btn btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#contact-info" aria-expanded="true" aria-controls="contact-info">
+                <i class="bi bi-chevron-up"></i>
+              </button>
+          </div>
+          <div class="card-body collapse show pt-0" id="contact-info">
+              <div class="row">
+                  <h5 class="mb-4 mt-3">Контактні дані</h5>
+              </div>
+              <div class="row mb-4">
+                  <div class="col col-md-4 mb-3">
+                      <label for="phone" class="form-label">Номер телефону</label>
+                      <input type="tel" class="form-control" name="contactPhone" id="phone" value="{{session.user.phone}}">
+                  </div>
+                  <div class="col col-md-4 mb-3">
+                      <label for="name" class="form-label">Ім'я</label>
+                      <input type="text" class="form-control" name="contactName" id="name" value="{{session.user.name}}">
+                  </div>
+                  <div class="col col-md-4 mb-3">
+                      <label for="email" class="form-label">Ел. пошта</label>
+                      <input type="email" class="form-control" name="contactEmail" id="email" value="{{session.user.email}}">
+                  </div>
+              </div>
+              <div class="row">
+                  <h5 class="mb-2">Доставка</h5>
+              </div>
+              <div class="row mb-4">
+                  <ul class="list-group">
+                      <li class="list-group-item">
+                          <div class="form-check">
+                              <input class="form-check-input" type="radio" name="deliveryType" id="delivery1" checked value="address_delivery">
+                              <label class="form-check-label" for="delivery1">
+                                  Адресна доставка
+                              </label>
+                          </div>
+                      </li>
+                      <li class="list-group-item">
+                          <div class="form-check">
+                              <input class="form-check-input" type="radio" name="deliveryType" id="delivery2" value="self_service">
+                              <label class="form-check-label" for="delivery2">
+                                  Самовивіз з магазину
+                              </label>
+                          </div>
+                      </li>
+                      <li class="list-group-item">
+                          <div class="form-check">
+                              <input class="form-check-input" type="radio" name="deliveryType" id="delivery3" value="nova_poshta">
+                              <label class="form-check-label" for="delivery3">
+                                  Нова пошта
+                              </label>
+                          </div>
+                      </li>
+                  </ul>
+              </div>
+              <div class="row">
+                  <h5 class="mb-2">Спосіб оплати</h5>
+              </div>
+              <div class="row mb-2">
+                  <ul class="list-group">
+                      <li class="list-group-item">
+                          <div class="form-check">
+                              <input class="form-check-input" type="radio" name="paymentType" id="payment1" checked value="online_card">
+                              <label class="form-check-label" for="payment1">
+                                  Оплата картою онлайн
+                              </label>
+                          </div>
+                      </li>
+                      <li class="list-group-item">
+                          <div class="form-check">
+                              <input class="form-check-input" type="radio" name="paymentType" id="payment2" value="upon_receipt">
+                              <label class="form-check-label" for="payment2">
+                                  Оплата при отриманні
+                              </label>
+                          </div>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <div class="row mb-4">
+              <div class="col d-flex align-items-center justify-content-between py-1">
+                <p class="total-price-label mb-0">Сума до сплати: </p>
+                <div class="product-price">
+                  <span class="product-price__value">{{formatPrice viewData.total}}</span>
+                  <span class="product-price__currency">грн</span>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <button type="submit" class="purchase-btn btn bg-primary text-white mb-2">Оформити замовлення</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  {{/inline}}
+{{/app}}

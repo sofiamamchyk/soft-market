@@ -79,6 +79,13 @@ async function bootstrap() {
       res.redirect('/');
     }
   });
+  app.use('/checkout*', function (req, res, next) {
+    if (req.session.user) {
+      next();
+    } else {
+      res.redirect('/auth/login');
+    }
+  });
 
   await app.listen(process.env.PORT || 8080);
 }

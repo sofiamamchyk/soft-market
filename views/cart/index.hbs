@@ -61,12 +61,17 @@
               </div>
               <div class="row">
                 <div class="col">
-                  <a href="/cart/purchase" class="purchase-btn btn bg-primary text-white mb-2">Оформити замовлення</a>
+                  <a href="/checkout" class="purchase-btn btn bg-primary text-white mb-2">Оформити замовлення</a>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
+      {{else}}
+      <div class="row" style="margin-top: 100px;">
+        <h5 class="text-center">Ваш кошик порожній</h5>
+        <p class="text-center">Перейдіть до каталогу та знайдіть те, що вам потрібно</p>
       </div>
     {{/if}}
   {{/inline}}
