@@ -5,6 +5,11 @@ import { join } from 'path';
 import * as hbs from 'hbs';
 import * as hbsUtils from 'hbs-utils';
 import * as session from 'express-session';
+import {EOrderStatus} from './models/orderStatus.enum';
+import {orderStatusMap} from './utils/orderStatusMap';
+import {EDeliveryType} from './models/deliveryType.enum';
+import {deliveryTypeMap} from './utils/deliveryTypeMap';
+import {paymentTypeMap} from './utils/paymentTypeMap';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -46,6 +51,18 @@ async function bootstrap() {
   });
   hbs.registerHelper('cartCount', function(products){
     return Object.keys(products || {}).length;
+  });
+
+  hbs.registerHelper('orderStatus', function(value: EOrderStatus) {
+    return orderStatusMap[value];
+  });
+
+  hbs.registerHelper('deliveryType', function(value: EDeliveryType) {
+    return deliveryTypeMap[value];
+  });
+
+  hbs.registerHelper('paymentType', function(value: EDeliveryType) {
+    return paymentTypeMap[value];
   });
   
   app.setViewEngine('hbs');

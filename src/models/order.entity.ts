@@ -91,6 +91,14 @@ export class Order {
     this.paymentType = paymentType;
   }
 
+  getStatus(): EOrderStatus {
+    return this.status;
+  }
+
+  setStatus(status: EOrderStatus) {
+    this.status = status;
+  }
+
   getTotal(): number {
     return this.total;
   }

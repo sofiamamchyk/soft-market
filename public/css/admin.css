@@ -2,6 +2,10 @@
   background-color: #1a252f;
 }
 
+.content {
+  min-height: 100vh;
+}
+
 .fixed {
   -ms-flex: 0 0 250px;
   flex: 0 0 250px;
@@ -30,4 +34,18 @@ hr {
 .card-header {
   background-color: #f8f9fc;
   border-bottom: 1px solid #e3e6f0;
+  padding: 1rem;
+}
+
+.card-header h4 {
+  margin-bottom: 0;
+}
+
+.form-label {
+  margin-bottom: 4px;
+}
+
+form label+p, form label+a {
+  line-height: 38px;
+  margin-bottom: 0;
 }
