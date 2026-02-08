@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, ILike } from 'typeorm';
 import { Product } from './product.entity';
 
 @Injectable()
@@ -28,5 +28,13 @@ export class ProductsService {
 
   async remove(id: string): Promise<void> {
     await this.productsRepository.delete(id);
+  }
+
+  search(value: string): Promise<Product[]> {
+    return this.productsRepository.find({
+      where: {
+        name: ILike(`%${value}%`),
+      },
+    });
   }
 }
