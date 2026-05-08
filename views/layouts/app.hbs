@@ -118,7 +118,11 @@
         </ol>
       </nav>
       {{/if}}
-      {{#if viewData.subtitle}}<h2 style="padding: 8px 0;">{{ viewData.subtitle }}</h2>{{/if}}</h2>
+     {{#if viewData.subtitle}}
+   <h2 style="padding: 8px 0; {{#ifCond viewData.subtitle 'Про нас'}}display: none;{{/ifCond}}">
+      {{ viewData.subtitle }}
+   </h2>
+{{/if}}
     </div>
   </header>
   <!-- header -->
